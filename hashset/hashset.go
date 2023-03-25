@@ -4,7 +4,7 @@ import "fmt"
 
 type Set[T comparable] map[T]struct{}
 
-func NewSet[T comparable](vals ...T) Set[T] {
+func New[T comparable](vals ...T) Set[T] {
 	s := Set[T]{}
 	for _, v := range vals {
 		s[v] = struct{}{}
@@ -36,13 +36,13 @@ func (s Set[T]) String() string {
 }
 
 func (s Set[T]) Union(s2 Set[T]) Set[T] {
-	result := NewSet(s.Members()...)
+	result := New(s.Members()...)
 	result.Add(s2.Members()...)
 	return result
 }
 
 func (s Set[T]) Intersection(s2 Set[T]) Set[T] {
-	result := NewSet[T]()
+	result := New[T]()
 	for _, v := range s.Members() {
 		if s2.Contains(v) {
 			result.Add(v)
